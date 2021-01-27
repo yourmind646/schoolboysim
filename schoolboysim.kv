@@ -1,0 +1,66 @@
+<MainMenu>:
+	GridLayout:
+		rows: 2
+
+		BoxLayout:
+			Image:
+				source: "data/img/logo.png"
+
+		BoxLayout:
+			orientation: 'vertical'
+
+			AnchorLayout:
+				anchor_y: 'center'
+				anchor_x: 'center'
+				MDFillRoundFlatButton:
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "15sp"
+					size_hint: (.6, .65)
+					text: "Новая игра"
+
+			AnchorLayout:
+				anchor_y: 'center'
+				anchor_x: 'center'
+				MDFillRoundFlatButton:
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "15sp"
+					size_hint: (.6, .65)
+					text: "Загрузить игру"
+
+			AnchorLayout:
+				anchor_y: 'center'
+				anchor_x: 'center'
+				MDFillRoundFlatButton:
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "15sp"
+					size_hint: (.6, .65)
+					text: "Инфо"
+
+					on_release:
+						root.manager.transition.direction = 'left'
+						root.manager.current = "Info"
+			AnchorLayout:
+				Widget:
+
+<InfoPage>:
+	AnchorLayout:
+		anchor_y: 'top'
+		MDLabel:
+			valign: "top"
+			halign: "center"
+			text: "Исходный код игры доступен по ссылке:\nhttps://clck.ru/Syxha\nАвтор: Telegram @RubyHunter"
+			size_hint: (1, 1)
+			size: (1, 1)
+
+	AnchorLayout:
+		padding: [0, 0, 0, 30]
+		anchor_y: 'bottom'
+		MDFillRoundFlatButton:
+			font_name: 'data/ttf/ubuntu.ttf'
+			font_size: "15sp"
+			size_hint: (.5, .09)
+			text: "Назад в меню"
+
+			on_release:
+				root.manager.transition.direction = 'right'
+				root.manager.current = 'Menu'
