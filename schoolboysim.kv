@@ -1,10 +1,14 @@
+<Tile@SmartTileWithLabel>:
+	height: "240dp"
+	font_name: 'data/ttf/ubuntu.ttf'
+
 <MainMenu>:
 	GridLayout:
 		rows: 2
 
 		BoxLayout:
 			Image:
-				source: "logo.png"
+				source: "data/img/logo.png"
 
 		BoxLayout:
 			orientation: 'vertical'
@@ -13,54 +17,186 @@
 				anchor_y: 'center'
 				anchor_x: 'center'
 				MDFillRoundFlatButton:
-					font_name: 'ubuntu.ttf'
+					font_name: 'data/ttf/ubuntu.ttf'
 					font_size: "8sp"
-					size_hint: (.5, .5)
-					text: "Новая игра"
+					size_hint: (.4, .4)
+					text: "Играть"
+
+					on_release:
+						root.manager.transition.direction = 'left'
+						root.manager.current = "Game"
 
 			AnchorLayout:
 				anchor_y: 'center'
 				anchor_x: 'center'
 				MDFillRoundFlatButton:
-					font_name: 'ubuntu.ttf'
+					font_name: 'data/ttf/ubuntu.ttf'
 					font_size: "8sp"
-					size_hint: (.5, .5)
-					text: "Загрузить игру"
-
-			AnchorLayout:
-				anchor_y: 'center'
-				anchor_x: 'center'
-				MDFillRoundFlatButton:
-					font_name: 'ubuntu.ttf'
-					font_size: "8sp"
-					size_hint: (.5, .5)
+					size_hint: (.4, .4)
 					text: "Инфо"
 
 					on_release:
 						root.manager.transition.direction = 'left'
 						root.manager.current = "Info"
+
 			AnchorLayout:
-				Widget:
+				anchor_y: 'center'
+				anchor_x: 'center'
+				MDFillRoundFlatButton:
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "8sp"
+					size_hint: (.4, .4)
+					text: "Выйти"
 
+					on_release:
+						exit()
 <InfoPage>:
-	AnchorLayout:
-		anchor_y: 'top'
-		MDLabel:
-			valign: "top"
-			halign: "center"
-			text: "Исходный код игры доступен по ссылке:\nhttps://clck.ru/Syxha\nАвтор: Telegram @RubyHunter"
-			size_hint: (1, 1)
-			size: (1, 1)
+	BoxLayout:
+		orientation: "vertical"
+		spacing: 15
 
-	AnchorLayout:
-		padding: [0, 0, 0, 30]
-		anchor_y: 'bottom'
-		MDFillRoundFlatButton:
-			font_name: 'ubuntu.ttf'
-			font_size: "8sp"
-			size_hint: (.45, .07)
-			text: "Назад в меню"
+		Widget:
 
-			on_release:
-				root.manager.transition.direction = 'right'
-				root.manager.current = 'Menu'
+		Widget:
+
+		AnchorLayout:
+			anchor_y: 'center'
+			anchor_x: 'center'
+			MDFillRoundFlatButton:
+				size_hint: [.4, .6]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Поддержать"
+
+				on_release:
+					root.browser_open("https://www.donationalerts.com/r/rubyhunterr")
+
+		AnchorLayout:
+			anchor_y: 'center'
+			anchor_x: 'center'
+			MDFillRoundFlatButton:
+				size_hint: [.4, .6]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Исходный код"
+
+				on_release:
+					root.browser_open("https://github.com/yourmind646/schoolboysim")
+
+		AnchorLayout:
+			anchor_y: 'center'
+			anchor_x: 'center'
+			MDFillRoundFlatButton:
+				size_hint: [.4, .6]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Автор"
+
+				on_release:
+					root.browser_open("https://t.me/rubyhunter")
+
+		AnchorLayout:
+			MDFillRoundFlatButton:
+				size_hint: [.4, .6]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Назад в меню"
+
+				on_release:
+					root.manager.transition.direction = 'right'
+					root.manager.current = 'Menu'
+
+
+		Widget:
+		Widget:
+
+<Game>:
+	MDBottomNavigation:
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Инфо'
+            icon: "alert-circle-outline"
+
+            GridLayout:
+            	cols: 2
+            	rows: 10
+            	padding: [10, 0, 0, 0]
+
+            	MDLabel:
+            		text: "Уровень:"
+            		halign: "left"
+
+            	MDLabel:
+            		text: root.data.get("Level")
+
+            	MDLabel:
+            		text: "Опыт:"
+            		halign: "left"
+
+            	MDLabel:
+            		text: root.data.get("Exp")
+
+            	MDLabel:
+            		text: "Деньги:"
+            		halign: "left"
+
+            	MDLabel:
+            		text: root.data.get("Money")
+
+            	MDLabel:
+            		text: "Цель:"
+
+            	MDLabel:
+            		text: root.data.get("Target")
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'ЗАРАБОТОК'
+            icon: 'cash'
+
+            MDLabel:
+                text: 'ЗАРАБОТОК В РАЗРАБОТКЕ'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'МАГАЗИН'
+            icon: 'cart-outline'
+
+            MDLabel:
+                text: 'МАГАЗИН В РАЗРАБОТКЕ'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 4'
+            text: 'ВЫХОД'
+            icon: 'exit-run'
+
+            MDLabel:
+                text: 'ВЫХОД В РАЗРАБОТКЕ'
+                halign: 'center'
