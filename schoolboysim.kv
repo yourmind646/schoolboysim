@@ -1,0 +1,274 @@
+<Tile@SmartTileWithLabel>:
+	height: "240dp"
+	font_name: 'data/ttf/ubuntu.ttf'
+
+<MainMenu>:
+	GridLayout:
+		rows: 2
+
+		BoxLayout:
+			Image:
+				source: "data/img/logo.png"
+
+		BoxLayout:
+			orientation: 'vertical'
+
+			AnchorLayout:
+				anchor_y: 'center'
+				anchor_x: 'center'
+				MDFillRoundFlatButton:
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "8sp"
+					size_hint: (.4, .4)
+					text: "Играть"
+
+					on_release:
+						root.manager.current = "Game"
+
+			AnchorLayout:
+				anchor_y: 'center'
+				anchor_x: 'center'
+				MDFillRoundFlatButton:
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "8sp"
+					size_hint: (.4, .4)
+					text: "Инфо"
+
+					on_release:
+						root.manager.current = "Info"
+
+			AnchorLayout:
+				anchor_y: 'center'
+				anchor_x: 'center'
+				MDFillRoundFlatButton:
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "8sp"
+					size_hint: (.4, .4)
+					text: "Выйти"
+
+					on_release:
+						root.close_game()
+<InfoPage>:
+	BoxLayout:
+		orientation: "vertical"
+		spacing: 15
+
+		Widget:
+
+		Widget:
+
+		AnchorLayout:
+			anchor_y: 'center'
+			anchor_x: 'center'
+			MDFillRoundFlatButton:
+				size_hint: [.4, .65]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Поддержать"
+
+				on_release:
+					root.browser_open("https://www.donationalerts.com/r/rubyhunterr")
+
+		AnchorLayout:
+			anchor_y: 'center'
+			anchor_x: 'center'
+			MDFillRoundFlatButton:
+				size_hint: [.4, .65]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Исходный код"
+
+				on_release:
+					root.browser_open("https://github.com/yourmind646/schoolboysim")
+
+		AnchorLayout:
+			anchor_y: 'center'
+			anchor_x: 'center'
+			MDFillRoundFlatButton:
+				size_hint: [.4, .65]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Автор"
+
+				on_release:
+					root.browser_open("https://t.me/rubyhunter")
+
+		AnchorLayout:
+			MDFillRoundFlatButton:
+				size_hint: [.4, .65]
+				font_name: 'data/ttf/ubuntu.ttf'
+				font_size: "8sp"
+				text: "Назад в меню"
+
+				on_release:
+					root.manager.current = 'Menu'
+
+
+		Widget:
+		Widget:
+
+<Game>:
+	mon: mon
+	exp: exp
+	btn1: btn1
+	pb1: pb1
+
+	MDBottomNavigation:
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Инфо'
+            icon: "alert-circle-outline"
+
+            GridLayout:
+            	cols: 2
+            	rows: 10
+            	padding: [20, 0, 0, 0]
+
+            	MDLabel:
+            		text: "Уровень:"
+					font_size: "14sp"
+
+            	MDLabel:
+					font_size: "14sp"
+            		text: root.data.get("Level")
+
+            	MDLabel:
+            		text: "Опыт:"
+					font_size: "14sp"
+
+            	MDLabel:
+            		id: exp
+					font_size: "14sp"
+            		text: root.data.get("Exp") + " exp"
+
+            	MDLabel:
+            		text: "Деньги:"
+					font_size: "14sp"
+
+            	MDLabel:
+            		id: mon
+					font_size: "14sp"
+            		text: root.data.get("Money") + " ₽"
+
+            	MDLabel:
+            		text: "Цель:"
+					font_size: "14sp"
+
+            	MDLabel:
+					font_size: "14sp"
+            		text: root.data.get("Target")
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+            	Widget:
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'ЗАРАБОТОК'
+            icon: 'cash'
+
+			ScrollView:
+				do_scroll_x: False
+				do_scroll_y: True
+            	GridLayout:
+            		padding: [20, 0]
+            		size_hint_y: None
+            		cols: 2
+            		rows: 10
+
+            		MDLabel:
+            			text: "Украсть пенал у одноклассницы\n\n+100₽ +10exp"
+            			font_size: "14sp"
+            			size_hint: [.7, 1]
+
+            		AnchorLayout:
+            			size_hint: [.3, 1]
+            			anchor_x: "right"
+
+						MDIconButton:
+							id: btn1
+							icon: "arrow-right-drop-circle-outline"
+							theme_text_color: "Custom"
+							text_color: [.35, .66, .41]
+							pos_hint: {"center_x": 1, "center_y": 1}
+
+							on_release:
+								root.earn_action("1")
+
+						MDProgressBar:
+							id: pb1
+							value: 0
+							opacity: 0
+
+
+
+
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'МАГАЗИН'
+            icon: 'cart-outline'
+
+            MDLabel:
+                text: 'МАГАЗИН В РАЗРАБОТКЕ'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 4'
+            text: 'ВЫХОД'
+            icon: 'exit-run'
+
+            GridLayout:
+            	cols: 1
+            	rows: 11
+
+            	Widget:
+            	Widget:
+            	Widget:
+            	Widget:
+				AnchorLayout:
+					MDFillRoundFlatButton:
+						size_hint: [.4, .8]
+						font_name: 'data/ttf/ubuntu.ttf'
+						font_size: "8sp"
+						text: "Назад в меню"
+
+						on_release:
+							root.manager.current = 'Menu'
+
+				Widget:
+				AnchorLayout:
+					MDFillRoundFlatButton:
+						size_hint: [.4, .8]
+						font_name: 'data/ttf/ubuntu.ttf'
+						font_size: "8sp"
+						text: "Выход из игры"
+
+						on_release:
+							root.close_game()
+
+				Widget:
+				Widget:
+				Widget:
+				Widget:
