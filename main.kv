@@ -1,0 +1,447 @@
+<Game>:
+	lvl: lvl
+	exp: exp
+	mon: mon
+	target: target
+
+	btn1: btn1
+	btn2: btn2
+	btn3: btn3
+	btn4: btn4
+	btn5: btn5
+
+	pb1: pb1
+	pb2: pb2
+	pb3: pb3
+	pb4: pb4
+	pb5: pb5
+
+	t_btn1:t_btn1
+	t_btn2:t_btn2
+	t_btn3:t_btn3
+	t_btn4:t_btn4
+	t_btn5:t_btn5
+
+	orientation: 'vertical'
+
+	MDBottomNavigation:
+		MDBottomNavigationItem:
+			index: 0
+			name: 'screen 1'
+			text: 'Данные'
+			icon: "alert-circle-outline"
+
+
+			GridLayout:
+				cols: 2
+				rows: 12
+				padding: 20, 0
+				BoxLayout:
+					spacing: 12
+
+					Image:
+						size_hint: (.2, 1)
+						source: "data/ico/lvl.png"
+					
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Уровень:"
+						font_size: "15sp"
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					id: lvl
+					font_size: "15sp"
+					text: root.temp_data.get("Level")
+
+				BoxLayout:
+					spacing: 9
+
+					Image:
+						size_hint: (.2, 1)
+						source: "data/ico/exp.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Опыт:"
+						font_size: "15sp"
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					id: exp
+					font_size: "15sp"
+					text: root.temp_data.get("Exp") + " exp"
+
+				BoxLayout:
+					spacing: 9
+
+					Image:
+						size_hint: (.2, 1)
+						source: "data/ico/balance.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Деньги:"
+						font_size: "15sp"
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					id: mon
+					font_size: "15sp"
+					text: root.temp_data.get("Money") + " руб"
+
+				BoxLayout:
+					spacing: 9
+
+					Image:
+						size_hint: (.2, 1)
+						source: "data/ico/target.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Цель:"
+						font_size: "15sp"
+
+				MDLabel:
+					id: target
+					font_name: 'data/ttf/ubuntu.ttf'
+					font_size: "15sp"
+					text: root.temp_data.get("Target")
+
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:		
+
+		MDBottomNavigationItem:
+			name: 'screen 2'
+			text: 'ЗАРАБОТОК'
+			icon: 'cash'
+
+			GridLayout:
+				padding: [20, 0]
+				cols: 2
+				rows: 10
+
+				BoxLayout:
+					spacing: 20
+					Image:
+						size_hint: (.1, 1)
+						source: "data/ico/pbox.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Украсть пенал у одноклассницы\n\n+100 руб  +10 exp"
+						font_size: "15sp"
+						size_hint: [.7, 1]
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+
+					MDIconButton:
+						id: btn1
+						icon: "arrow-right-drop-circle-outline"
+						theme_text_color: "Custom"
+						text_color: .35, .66, .41, 1
+						pos_hint: {"center_x": 1, "center_y": 1}
+
+						on_release:
+							root.earn_action("earn_action_1")
+
+					MDProgressBar:
+						id: pb1
+						value: 0
+						opacity: 0
+				BoxLayout:
+					spacing: 20
+
+					Image:
+						size_hint: (.1, 1)
+						source: "data/ico/gribov.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Отобрать деньги у Грибова\n\n+500 руб  +25 exp"
+						font_size: "15sp"
+						size_hint: [.7, 1]
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+
+					MDIconButton:
+						id: btn2
+						icon: "arrow-right-drop-circle-outline" if root.temp_data.get("earn_action_2") == "opened" else "lock"
+						theme_text_color: "Custom"
+						text_color: .35 if root.temp_data.get("earn_action_2") == "opened" else .98, .66 if root.temp_data.get("earn_action_2") == "opened" else .60, .41 if root.temp_data.get("earn_action_2") == "opened" else .19, 1
+						pos_hint: {"center_x": 1, "center_y": 1}
+
+						on_release:
+							root.earn_action("earn_action_2")
+
+					MDProgressBar:
+						id: pb2
+						value: 0
+						opacity: 0
+				BoxLayout:
+					spacing: 20
+
+					Image:
+						size_hint: (.1, 1)
+						source: "data/ico/food.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: 'Организовать сбор денег на "покушать"\n\n+1000 руб  +50 exp'
+						font_size: "15sp"
+						size_hint: [.7, 1]
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+
+					MDIconButton:
+						id: btn3
+						icon: "arrow-right-drop-circle-outline" if int(root.temp_data.get("Level")) >= 3 else "lock"
+						theme_text_color: "Custom"
+						text_color: .35 if root.temp_data.get("earn_action_3") == "opened" else .98, .66 if root.temp_data.get("earn_action_3") == "opened" else .60, .41 if root.temp_data.get("earn_action_3") == "opened" else .19, 1
+						pos_hint: {"center_x": 1, "center_y": 1}
+
+						on_release:
+							root.earn_action("earn_action_3")
+
+					MDProgressBar:
+						id: pb3
+						value: 0
+						opacity: 0
+				BoxLayout:
+					spacing: 20
+
+					Image:
+						size_hint: (.1, 1)
+						source: "data/ico/cafe.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Крышевать столовую\n\n+5000 руб  +100 exp"
+						font_size: "15sp"
+						size_hint: [.7, 1]
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+
+					MDIconButton:
+						id: btn4
+						icon: "arrow-right-drop-circle-outline" if int(root.temp_data.get("Level")) >= 4 else "lock"
+						theme_text_color: "Custom"
+						text_color: .35 if root.temp_data.get("earn_action_4") == "opened" else .98, .66 if root.temp_data.get("earn_action_4") == "opened" else .60, .41 if root.temp_data.get("earn_action_4") == "opened" else .19, 1
+						pos_hint: {"center_x": 1, "center_y": 1}
+
+						on_release:
+							root.earn_action("earn_action_4")
+
+					MDProgressBar:
+						id: pb4
+						value: 0
+						opacity: 0
+				BoxLayout:
+					spacing: 20
+
+					Image:
+						size_hint: (.1, 1)
+						source: "data/ico/cash.png"
+
+					MDLabel:
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Получать процент зарплаты учителей\n\n+10000 руб  +150 exp"
+						font_size: "15sp"
+						size_hint: [.7, 1]
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+
+					MDIconButton:
+						id: btn5
+						icon: "arrow-right-drop-circle-outline" if int(root.temp_data.get("Level")) >= 5 else "lock"
+						theme_text_color: "Custom"
+						text_color: .35 if root.temp_data.get("earn_action_5") == "opened" else .98, .66 if root.temp_data.get("earn_action_5") == "opened" else .60, .41 if root.temp_data.get("earn_action_5") == "opened" else .19, 1
+						pos_hint: {"center_x": 1, "center_y": 1}
+
+						on_release:
+							root.earn_action("earn_action_5")
+
+					MDProgressBar:
+						id: pb5
+						value: 0
+						opacity: 0		
+
+		MDBottomNavigationItem:
+			name: 'screen 3'
+			text: 'МАГАЗИН'
+			icon: 'basket-outline'
+
+			FloatLayout:
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					pos_hint: {'center_y': .96}
+					text: "Цели:"
+					halign: "center"
+
+			GridLayout:
+				padding: 20, 0
+				size_hint: (1, .9)
+				cols: 2
+				rows: 10
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					text: "Отменить д/з\nТребуется 1 уровень"
+					size_hint: [.7, 1]
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+					MDIconButton:
+						id: t_btn1
+						icon: "cart-arrow-down" if root.temp_data.get("target_1") == "opened" else "check-circle-outline" if root.temp_data.get("target_1") == "bought" else "lock"
+						theme_text_color: "Custom"
+						text_color: [.13, .59, .95, 1] if root.temp_data.get("target_1") == "opened" else [.35, .66 ,.41, 1] if root.temp_data.get("target_1") == "bought" else [.98, .60, .19, 1]
+
+						on_release:
+							root.buy_target("target_1")
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					text: "Отменить c/р\nТребуется 2 уровень"
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+					MDIconButton:
+						id: t_btn2
+						icon: "cart-arrow-down" if root.temp_data.get("target_2") == "opened" else "check-circle-outline" if root.temp_data.get("target_2") == "bought" else "lock"
+						theme_text_color: "Custom"
+						text_color: [.13, .59, .95, 1] if root.temp_data.get("target_2") == "opened" else [.35, .66 ,.41, 1] if root.temp_data.get("target_2") == "bought" else [.98, .60, .19, 1]
+						on_release:
+							root.buy_target("target_2")
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					text: "Отменить к/р\nТребуется 3 уровень"
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+					MDIconButton:
+						id: t_btn3
+						icon: "cart-arrow-down" if root.temp_data.get("target_3") == "opened" else "check-circle-outline" if root.temp_data.get("target_3") == "bought" else "lock"
+						theme_text_color: "Custom"
+						text_color: [.13, .59, .95, 1] if root.temp_data.get("target_3") == "opened" else [.35, .66 ,.41, 1] if root.temp_data.get("target_3") == "bought" else [.98, .60, .19, 1]
+						on_release:
+							root.buy_target("target_3")
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					text: "Отменить ВПР\nТребуется 4 уровень"
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+					MDIconButton:
+						id: t_btn4
+						icon: "cart-arrow-down" if root.temp_data.get("target_4") == "opened" else "check-circle-outline" if root.temp_data.get("target_4") == "bought" else "lock"
+						theme_text_color: "Custom"
+						text_color: [.13, .59, .95, 1] if root.temp_data.get("target_4") == "opened" else [.35, .66 ,.41, 1] if root.temp_data.get("target_4") == "bought" else [.98, .60, .19, 1]
+						on_release:
+							root.buy_target("target_4")
+
+				MDLabel:
+					font_name: 'data/ttf/ubuntu.ttf'
+					text: "Отменить экзамены\nТребуется 5 уровень"
+
+				AnchorLayout:
+					size_hint: [.3, 1]
+					anchor_x: "right"
+					MDIconButton:
+						id: t_btn5
+						icon: "cart-arrow-down" if root.temp_data.get("target_5") == "opened" else "check-circle-outline" if root.temp_data.get("target_5") == "bought" else "lock"
+						theme_text_color: "Custom"
+						
+						text_color: [.13, .59, .95, 1] if root.temp_data.get("target_5") == "opened" else [.35, .66 ,.41, 1] if root.temp_data.get("target_5") == "bought" else [.98, .60, .19, 1]
+						on_release:
+							root.buy_target("target_5")
+
+
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+				Widget:
+
+		MDBottomNavigationItem:
+			name: 'screen 4'
+			text: 'МЕНЮ'
+			icon: 'menu'
+
+			GridLayout:
+				rows: 8
+				cols: 1
+
+				Widget:
+				Widget:
+
+				AnchorLayout:
+					anchor_x: 'center'
+					MDFillRoundFlatButton:
+						size_hint_x: .45
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Исходный код"
+
+						on_release:
+							root.browser_open("https://github.com/yourmind646/schoolboysim")
+
+				AnchorLayout:
+					MDFillRoundFlatButton:
+						size_hint_x: .45
+						font_name: 'data/ttf/ubuntu.ttf'
+						text: "Автор"
+
+						on_release:
+							root.browser_open("https://t.me/rubyhunter")
+
+				AnchorLayout:
+					MDFillRoundFlatButton:
+						size_hint_x: .45
+						text: "Поддержать"
+						font_name: 'data/ttf/ubuntu.ttf'
+
+						on_release:
+							root.browser_open("https://www.donationalerts.com/r/rubyhunterr")
+
+				AnchorLayout:
+					MDFillRoundFlatButton:
+						size_hint_x: .45
+						text: "Выйти из игры"
+						font_name: 'data/ttf/ubuntu.ttf'
+
+						on_release:
+							root.close_game()
+
+				Widget:
+				Widget:

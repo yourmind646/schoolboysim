@@ -1,0 +1,1 @@
+{"Level": "1", "Exp": "0", "Money": "0", "Target": "\u041e\u0442\u043c\u0435\u043d\u0438\u0442\u044c \u0434/\u0437", "earn_action_1": "opened", "earn_action_2": "locked", "earn_action_3": "locked", "earn_action_4": "locked", "earn_action_5": "locked", "target_1": "opened", "target_2": "locked", "target_3": "locked", "target_4": "locked", "target_5": "locked"}
